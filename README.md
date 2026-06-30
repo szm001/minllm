@@ -1,6 +1,12 @@
 # minllm
 python原生开发的中英文大模型预训练项目
 
+# 环境配置
+```
+python3.10
+GPU 4060ti 16G（选项，训练速度更快）
+```
+
 # 执行日志
 ```
 D:\project\minllm> python .\minllm.py

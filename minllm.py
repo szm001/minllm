@@ -1,5 +1,5 @@
 """
-microgpt_chinese.py
+minllm.py
 中英文双语 GPT 大模型预训练系统
 
 本文件是纯 Python GPT 算法基础上，扩展为支持中英文双语的预训练系统。

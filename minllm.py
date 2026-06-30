@@ -1,8 +1,8 @@
 """
 microgpt_chinese.py
-基于原生 Python 实现的中英文双语 GPT 大模型预训练系统
+中英文双语 GPT 大模型预训练系统
 
-本文件在 microgpt0.py 的纯 Python GPT 算法基础上，扩展为支持中英文双语的预训练系统。
+本文件是纯 Python GPT 算法基础上，扩展为支持中英文双语的预训练系统。
 核心改进：
   1. 双语分词器：中文字符级 + 英文词级的混合分词策略
   2. 中文字符编码：覆盖 CJK 主区及扩展区，UTF-8 全链路处理
@@ -56,8 +56,6 @@ class BilingualTokenizer:
       - 中文字符：每个汉字单独作为一个 token（中文无空格分词，字粒度保留语义单元）
       - 英文/数字：连续的 ASCII 字母数字聚合为一个 token（词级，保留英文语义完整性）
       - 其他字符：标点、空格、全角符号等单独作为 token
-
-    相比 microgpt0.py 的纯字符级分词，本方案能更准确地处理双语的词汇边界。
     """
 
     PAD_TOKEN = '<pad>'   # 填充 token
@@ -177,7 +175,6 @@ class NewsDataLoader:
     新闻文本数据加载器
 
     读取 data 目录下所有 .txt 新闻文件，按行/段落切分为文档，
-    替代 microgpt0.py 中使用名字列表的数据方式。
     全程使用 UTF-8 编码，确保中文字符正确解析。
     """
 
@@ -220,7 +217,6 @@ class AutogradValue:
     支持自动求导的标量值节点（计算图节点）。
 
     递归应用链式法则：前向传播构建计算图，反向传播按拓扑序逆序累积梯度。
-    对应 microgpt0.py 中的 Value 类，重命名为更具语义的 AutogradValue。
     """
 
     __slots__ = ('data', 'gradient', '_children', '_local_gradients')
@@ -334,7 +330,7 @@ def initialize_parameter_matrix(output_dim, input_dim, std=0.08):
 
 
 def apply_linear_transformation(input_vector, weight_matrix):
-    """线性变换：output = W * x，对应 microgpt0.py 的 linear 函数"""
+    """线性变换：output = W * x"""
     return [sum(weight * x for weight, x in zip(weight_row, input_vector))
             for weight_row in weight_matrix]
 
